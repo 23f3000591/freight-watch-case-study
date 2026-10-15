@@ -1,15 +1,3 @@
-"""Turn a flagged route-week into a verdict, grounded only in notes that pass every check.
-
-A note may justify a rise only if ALL hold:
-  1. scope     : it names this route, or "All Routes"
-  2. effect    : its text says costs rose (not "not affected", "stable", "returned to normal", ...)
-  3. period    : its period overlaps this Monday-Sunday week
-  4. peers     : an all-routes note cannot explain a route that is unusually high versus its peers,
-                 because the same shock lifts the peers too
-  5. size      : if the note states a size (e.g. 5-7%), the observed rise must be within it plus one
-                 noise-sigma of tolerance
-No note passes -> "unexplained". Nothing is guessed.
-"""
 from dataclasses import dataclass
 from datetime import timedelta
 from typing import Optional
