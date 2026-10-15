@@ -1,7 +1,3 @@
-"""Three untouched runs on the same input must produce byte-identical outputs.
-
-    python repro_check.py
-"""
 import hashlib
 import shutil
 import subprocess
