@@ -1,10 +1,3 @@
-"""Load context notes, extract each note's scope / period / cost effect, and rank them by TF-IDF.
-
-Retrieval (TF-IDF cosine) proposes which notes look relevant to a route; structured checks on
-scope, dates and stated effect then decide whether a note may actually justify a cost rise.
-Everything is rule-based and deterministic. Unknown wording defaults to the conservative choice
-(one-week window, no cost effect), so a note can only justify a rise on positive evidence.
-"""
 import re
 from dataclasses import dataclass
 from datetime import timedelta
@@ -38,11 +31,11 @@ class Note:
     date: pd.Timestamp
     applies_to: str
     text: str
-    effect: str                      # "raises_cost" | "no_effect" | "unknown"
+    effect: str                     
     window_start: pd.Timestamp
     window_end: pd.Timestamp
-    window_kind: str                 # "range" | "step" | "quarter" | "week"
-    magnitude: Optional[tuple]       # stated size of the effect in %, e.g. (5.0, 7.0)
+    window_kind: str                
+    magnitude: Optional[tuple]      
 
     @property
     def is_all_routes(self) -> bool:
@@ -73,7 +66,7 @@ def _extract_window(text: str, date: pd.Timestamp):
         return date, date + timedelta(weeks=STEP_NOTE_HORIZON_WEEKS) - timedelta(days=1), "step"
     if re.search(r"this quarter", text, re.I):
         return date - timedelta(days=91), date, "quarter"
-    return date, date + timedelta(days=6), "week"   # "festival week", "about a week", default
+    return date, date + timedelta(days=6), "week" 
 
 
 def _extract_magnitude(text: str):
@@ -93,7 +86,6 @@ def load_notes(path) -> list:
 
 
 class NoteRetriever:
-    """TF-IDF index over the notes. Drop-in swappable for an embedding model + vector DB."""
 
     QUERY_TERMS = "cost increase surcharge disruption fuel diesel toll flood weather festival delay"
 
