@@ -1,10 +1,3 @@
-"""Plain-English questions about the findings, answered ONLY from the pipeline's own output.
-
-    python -m freight_watch.ask "why did Mumbai-Pune get pricier in October 2025?"
-
-No LLM: it recognises a route, a month and optionally a year in the question, then reads back
-the matching rows and their cited reasons. If nothing matches it says so instead of guessing.
-"""
 import re
 import sys
 from pathlib import Path
