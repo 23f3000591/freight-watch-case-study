@@ -16,12 +16,7 @@ def load_shipments(path) -> pd.DataFrame:
 
 
 def weekly_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """One row per (route, week) with cost, own-history baseline and peer average.
-
-    cost_per_tonne_km = sum(freight cost) / sum(tonnes * km) over the week's shipments.
-    own baseline      = mean of the route's weekly values over up to 8 strictly earlier weeks.
-    peer average      = mean weekly value of all OTHER routes with the same route_type that week.
-    """
+    
     types = df.groupby("route")["route_type"].nunique()
     if (types > 1).any():
         raise ValueError(f"Routes with more than one route_type: {list(types[types > 1].index)}")
