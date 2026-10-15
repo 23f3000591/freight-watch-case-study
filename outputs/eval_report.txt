@@ -1,0 +1,44 @@
+Part A: adversarial verdict cases (expected values labeled by hand from the notes)
+  [PASS] festival week itself -> N002 -> N002
+  [PASS] festival note, week AFTER -> none -> unexplained
+  [PASS] festival note, wrong route -> none -> unexplained
+  [PASS] flood, first week -> N001 -> N001
+  [PASS] flood, week ending inside window -> N001
+  [PASS] flood, week after window -> none -> unexplained
+  [PASS] flood, 'back to normal' week -> none -> unexplained
+  [PASS] flood, week BEFORE window -> none -> unexplained
+  [PASS] flood note, wrong route -> none -> unexplained
+  [PASS] maintenance 'not affected' -> none -> unexplained
+  [PASS] road resurfacing is good news -> none -> unexplained
+  [PASS] 'no disruptions' note + big rise -> none -> unexplained
+  [PASS] toll note not in dataset -> none -> unexplained
+  [PASS] diesel, small own-lens rise -> N003 -> N003
+  [PASS] diesel, rise far above 5-7% -> none -> unexplained
+  [PASS] diesel but peer-lens flag -> none -> unexplained
+  [PASS] diesel, 7 months later -> none -> unexplained
+  [PASS] diesel, week BEFORE note -> none -> unexplained
+  [PASS] stable-demand note -> none -> unexplained
+  [PASS] no note anywhere near -> none -> unexplained
+
+Part B: gold labels on the real output + independent citation audit
+  [PASS] flagged rows are exactly the gold set (got 18, gold 18; extra=set(), missing=set())
+  [PASS] every verdict / cited note matches gold {}
+  [PASS] every justified row passes the independent route+window audit []
+  [PASS] unexplained rows never carry a note id 
+  [PASS] justified reasons name the cited note id 
+
+Part C: detector sensitivity (inject a one-week cost jump into untouched weeks)
+  +10% jump: detected 13/21 (62%)
+  +15% jump: detected 19/21 (90%)
+  +20% jump: detected 21/21 (100%)
+  +30% jump: detected 21/21 (100%)
+  [PASS] recall >= 95% for a +20% jump 
+  [PASS] recall == 100% for a +30% jump 
+
+Part D: threshold sensitivity (untouched data)
+  z >= 2.5: 23 flagged route-weeks
+  z >= 3.0: 18 flagged route-weeks
+  z >= 3.5: 15 flagged route-weeks
+  z >= 4.0: 14 flagged route-weeks
+
+RESULT: ALL CHECKS PASSED

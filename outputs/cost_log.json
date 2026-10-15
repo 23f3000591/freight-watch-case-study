@@ -1,0 +1,9 @@
+{
+  "llm_calls": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "estimated_cost_usd": 0.0,
+  "retrieval": "scikit-learn TF-IDF (local, free)",
+  "route_weeks_scored": 728,
+  "rows_flagged_or_justified": 18
+}
