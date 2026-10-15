@@ -1,12 +1,3 @@
-"""Eval harness: does the assistant detect real rises, and can its verdicts be trusted?
-
-Run:  python tests/eval_harness.py        (exit code 1 if any check fails)
-
-Part A  adversarial verdict cases, labeled by hand from reading context_notes.csv
-Part B  gold labels for every row in the real output + independent citation audit
-Part C  detector sensitivity: inject known cost jumps into the real data, measure recall
-Part D  threshold sensitivity: how the flag count moves with the z threshold
-"""
 import sys
 from pathlib import Path
 
@@ -15,11 +6,11 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from freight_watch import detect                                   # noqa: E402
-from freight_watch.explain import FlagContext, decide               # noqa: E402
-from freight_watch.metrics import load_shipments, weekly_metrics    # noqa: E402
-from freight_watch.notes import NoteRetriever, load_notes           # noqa: E402
-from freight_watch.pipeline import build_output                     # noqa: E402
+from freight_watch import detect                                   
+from freight_watch.explain import FlagContext, decide               
+from freight_watch.metrics import load_shipments, weekly_metrics 
+from freight_watch.notes import NoteRetriever, load_notes
+from freight_watch.pipeline import build_output
 
 SHIP, NOTES = ROOT / "data" / "shipment_records.csv", ROOT / "data" / "context_notes.csv"
 notes = load_notes(NOTES)
