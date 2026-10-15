@@ -1,15 +1,3 @@
-"""Decide which route-weeks are 'rising and out of the ordinary'.
-
-A week is flagged when cost is above the route's own 8-week average AND at least one lens
-is both statistically unusual and materially large:
-  * own lens : % above own history is a robust z >= 3 versus that route's PRIOR weekly deviations
-               and is at least 5%
-  * peer lens: % above same-type peers is a robust z >= 3 versus that route's PRIOR peer gaps
-               and is at least 10%
-Using the route's own prior deviations as the yardstick matters: Mumbai-Pune normally sits
-~12% above its Short-route peer while Delhi-Jaipur sits ~10% below, so one fixed peer
-threshold would be wrong for both. Only past weeks are used (no look-ahead).
-"""
 import numpy as np
 import pandas as pd
 
